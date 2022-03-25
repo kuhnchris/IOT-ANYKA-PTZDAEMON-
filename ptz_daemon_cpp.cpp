@@ -64,8 +64,32 @@ void process_command(const std::string l) {
   } else if (cmd[0] == "setspeed") {
     std::cout << "set speed (motor, speed)"
               << "\n";
-    ak_drv_ptz_set_speed(atoll(cmd[1].c_str()), atoll(cmd[2].c_str()),0,0);
+    ak_drv_ptz_set_speed(atoll(cmd[1].c_str()), atoll(cmd[2].c_str()), 0, 0);
+  } else if (cmd[0] == "irgettres") {
+    std::cout << "ir get treshold"
+              << "\n";
+    int a = ak_drv_ir_get_threshold(0, 0);
+    std::cout << "ir get treshold: " << a << "\n";
+  } else if (cmd[0] == "irinit") {
+    std::cout << "ir init"
+              << "\n";
+    ak_drv_ir_init();
+  } else if (cmd[0] == "irgetinputlevel") {
+    std::cout << "get ir input level"
+              << "\n";
+    int a = ak_drv_ir_get_input_level(0, 0, 0, 0);
 
+    std::cout << "get ir input level: " << a << "\n";
+  } else if (cmd[0] == "irsetcheckmode") {
+    std::cout << "ir set checkmode"
+              << "\n";
+    ak_drv_ir_set_check_mode(atoi(cmd[1].c_str()));
+  } else if (cmd[0] == "irsetircut") {
+    std::cout << "ir set ircut " << cmd[1] << "\n";
+    ak_drv_ir_set_ircut(atoi(cmd[1].c_str()));
+  } else if (cmd[0] == "irsettres") {
+    std::cout << "ir set treshold " << cmd[1] << "\n";
+    ak_drv_ir_set_threshold((void *)cmd[1].c_str(), (void *)cmd[2].c_str());
   } else if (cmd[0] == "t") {
     std::cout << "turn"
               << "\n";
